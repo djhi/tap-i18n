@@ -120,11 +120,15 @@ _.extend TAPi18n,
     (key, options, lang_tag=null) ->
       if lang_tag?
         console.log "Warning: specifying lang_tag is not supported in client side, using session language"
-      
+
       # If inside a reactive computation, we want to invalidate the computation if the client lang changes
       Session.get loaded_lang_session_key
 
-      TAPi18next.t "#{TAPi18n._getPackageDomain(package_name)}:#{key}", options
+      if key instanceof Array
+        keys = key.map (k) -> return "#{TAPi18n._getPackageDomain(package_name)}:#{k}"
+        TAPi18next.t keys, options
+      else
+        TAPi18next.t "#{TAPi18n._getPackageDomain(package_name)}:#{key}", options
 
   _onceEnabled: () ->
     TAPi18n._registerHelpers globals.project_translations_domain

@@ -46,7 +46,7 @@ Package.onUse(function (api) {
 
 Package._transitional_registerBuildPlugin({
   name: 'tap-i18n-compiler',
-  use: ['coffeescript', 'underscore', 'aldeed:simple-schema@0.7.0', 'check', 'templating'],
+  use: ['coffeescript', 'underscore', 'aldeed:simple-schema', 'check', 'templating'],
   sources: [
     'lib/globals.js',
 
